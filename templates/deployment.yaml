@@ -52,12 +52,13 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.configmaps.enabled}}
           volumeMounts:
-          {{- if .Values.configmaps.enabled }}
-          {{- range .Values.configmaps.configs }}
+            {{- if .Values.configmaps.enabled }}
+            {{- range .Values.configmaps.configs }}
             - mountPath: {{.mountPath}}
               name: {{ $fullName }}-{{.name}}-volume
               readOnly: true
-          {{- end}}
+            {{- end}}
+            {{- end}}
           {{- end}}
       {{- with .Values.nodeSelector }}
       nodeSelector:
