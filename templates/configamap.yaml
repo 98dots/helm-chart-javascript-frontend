@@ -1,0 +1,22 @@
+{{- $fullName := include "frontend.fullname" . -}}
+{{- $labels := include "frontend.labels" . -}}
+{{- $files := .Files }}
+
+{{- if .Values.configmaps.enabled }}
+{{- range .Values.configmaps.configs }}
+{{- if not .existingConfig }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}-{{.name}}-config
+  labels:
+    {{- $labels | nindent 4 }}
+data:
+{{- range .files }}
+{{ ($files.Glob .).AsConfig | indent 2 }}
+{{- end }}
+
+{{- end}}
+{{- end}}
+{{- end}}
