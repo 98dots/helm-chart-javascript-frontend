@@ -52,8 +52,7 @@ spec:
             {{- if .Values.configmaps.enabled }}
             {{- range .Values.configmaps.configs }}
             - mountPath: {{.mountPath}}
-              name: {{ $fullName }}-{{.name}}-volume
-              defaultMode: 444
+              name: {{ $fullName }}-{{.name}}-volume              
             {{- end}}
             {{- end}}
           {{- end}}
@@ -75,7 +74,7 @@ spec:
         {{- range .Values.configmaps.configs }}
         - name: {{ $fullName }}-{{.name}}-volume
           configMap:
-            defaultMode: 420
+            defaultMode: 444
             {{- if .existingConfig }}
             name: {{ .existingConfig }}
             {{- else }}
