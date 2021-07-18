@@ -77,7 +77,7 @@ spec:
         {{- range .Values.configmaps.configs }}
         - name: {{ $fullName }}-{{.name}}-volume
           configMap:
-            defaultMode: 444
+            defaultMode: 0744
             {{- if .existingConfig }}
             name: {{ .existingConfig }}
             {{- else }}
