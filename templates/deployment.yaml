@@ -53,7 +53,7 @@ spec:
             {{- range .Values.configmaps.configs }}
             - mountPath: {{.mountPath}}
               name: {{ $fullName }}-{{.name}}-volume
-              readOnly: true
+              defaultMode: 444
             {{- end}}
             {{- end}}
           {{- end}}
