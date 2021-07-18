@@ -52,7 +52,10 @@ spec:
             {{- if .Values.configmaps.enabled }}
             {{- range .Values.configmaps.configs }}
             - mountPath: {{.mountPath}}
-              name: {{ $fullName }}-{{.name}}-volume              
+              name: {{ $fullName }}-{{.name}}-volume
+              {{- if .subPath }}
+              subPath: {{.subPath}}
+              {{- end}}
             {{- end}}
             {{- end}}
           {{- end}}
