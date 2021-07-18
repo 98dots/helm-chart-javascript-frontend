@@ -54,6 +54,9 @@ spec:
             - mountPath: {{.mountPath}}
               name: {{ $fullName }}-{{.name}}-volume
               readOnly: true
+              {{- if .subPath }}
+              subPath: {{.subPath}}
+              {{- end}}
             {{- end}}
             {{- end}}
           {{- end}}
